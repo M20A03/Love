@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --primary-color: #0b3d2c;
+  /* Deep rich green */
+  --secondary-color: #d4af37;
+  /* Warm gold */
+  --accent-color: #fce3e6;
+  /* Soft blush pink for love */
+  --text-light: #f8fcf5;
+  --text-dark: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  background-color: var(--text-dark);
+  /* Background frame */
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* Required CSS property: image-orientation */
+  image-orientation: from-image;
+}
+
+#root {
+  width: 100%;
+  max-width: 414px;
+  /* iPhone MAX width */
+  height: 100vh;
+  background-color: var(--primary-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+.arabic-text {
+  font-family: 'Amiri', serif;
+  color: var(--secondary-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.love-font {
+  font-family: 'Great Vibes', cursive;
+  color: var(--accent-color);
+}
+
+/* Required CSS property: ruby-align */
+ruby {
+  ruby-align: center;
+}
+
+/* --- Hero Section --- */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(27, 91, 66, 0.8), rgba(11, 61, 44, 0.9));
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  /* Required CSS property: 3D/2D TRANSFORM (used here via perspective) */
+  perspective: 1000px;
+}
+
+.hero-content {
+  z-index: 10;
+  /* Required CSS property: animation */
+  animation: fadeInZoom 3s infinite alternate;
+  /* Required CSS property: animation-timing-function */
+  animation-timing-function: ease-in-out;
+}
+
+/* Required CSS property: box-orient (can be used with flex or -webkit-box) */
+.story-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.section {
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Required CSS property: border-top-style / outline-color */
+.decorative-border {
+  border-top-width: 4px;
+  border-top-style: double;
+  border-top-color: var(--secondary-color);
+  outline: 2px solid transparent;
+  outline-color: var(--accent-color);
+  padding-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+/* --- 3D Photo Carousel --- */
+.carousel-container {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  perspective: 1000px;
+  margin: 50px auto;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: rotateCarousel 20s infinite linear;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  left: 25px;
+  top: 25px;
+  border: 5px solid var(--secondary-color);
+  border-radius: 15px;
+  overflow: hidden;
+  /* Required CSS property: backface-visibility */
+  backface-visibility: hidden;
+  /* Required CSS property: transition */
+  transition: transform 0.5s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  background-color: var(--text-dark);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+/* Animations Definition */
+
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.95) translateZ(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.05) translateZ(0);
+    /* Required CSS property: 3D TRANSFORM */
+  }
+}
+
+@keyframes rotateCarousel {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-element {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Crescent and Stars motif */
+.crescent {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 0 var(--secondary-color);
+  margin-bottom: 30px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.proposal-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--secondary-color);
+  padding: 25px 15px;
+  border-radius: 20px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  /* Required CSS property: 2D TRANSFORM */
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease, outline-color 0.3s;
+  outline-color: transparent;
+}
+
+.proposal-box:hover {
+  transform: rotate(0deg) scale(1.02);
+  outline: 2px solid var(--accent-color);
+}
+
+/* --- Global Background Effects & Aesthetics --- */
+
+@keyframes starFall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(110vh) translateX(-50px);
+    opacity: 0;
+  }
+}
+
+.falling-star {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--accent-color));
+  animation: starFall 10s linear infinite;
+  opacity: 0;
+}
+
+.floating-islamic {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.15;
+  color: var(--secondary-color);
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.carousel-image-active {
+  animation: fadeSlide 0.6s ease-out forwards;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 0 25px rgba(212, 175, 55, 0.9), 0 0 5px var(--accent-color);
+  }
+
+  100% {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+}
+
+.glow-text {
+  animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes floatSlow {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+/* Semi-transparent section backgrounds so stars show through */
+.section-transparent {
+  background-color: rgba(11, 61, 44, 0.85) !important;
+  backdrop-filter: blur(2px);
+  position: relative;
+  z-index: 10;
+  /* Above the background stars */
+}
