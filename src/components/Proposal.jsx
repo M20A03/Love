@@ -1,28 +1,13 @@
 import React, { useState } from 'react';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Proposal = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isAccepted, setIsAccepted] = useState(false);
 
-    const handleAccept = async () => {
+    const handleAccept = () => {
         setIsSubmitting(true);
-        try {
-            // Save the response to Firestore
-            await addDoc(collection(db, "responses"), {
-                answer: "Yes, Insha'Allah",
-                timestamp: serverTimestamp(),
-                deviceInfo: navigator.userAgent // Optional: captures basic device info
-            });
-            setIsAccepted(true);
-            alert("Alhamdulillah! May Allah bless us and shower His mercy upon us.");
-        } catch (error) {
-            console.error("Error saving response: ", error);
-            // Fallback alert even if db fails due to permissions etc.
-            setIsAccepted(true);
-            alert("Alhamdulillah! May Allah bless us and shower His mercy upon us.");
-        }
+        setIsAccepted(true);
+        alert("Alhamdulillah! May Allah bless us and shower His mercy upon us.");
         setIsSubmitting(false);
     };
 
