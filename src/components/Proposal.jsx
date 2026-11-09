@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Proposal = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isAccepted, setIsAccepted] = useState(false);
 
-    const handleAccept = () => {
+    const handleAccept = async () => {
         setIsSubmitting(true);
         setIsAccepted(true);
+        try {
+            await addDoc(collection(db, "responses"), {
+                status: "Accepted",
+                response: "Yes, Insha'Allah",
+                timestamp: serverTimestamp(),
+                device: typeof navigator !== "undefined" ? navigator.userAgent : "Unknown"
+            });
+        } catch (err) {
+            console.error("Firestore sync:", err);
+        }
         alert("Alhamdulillah! May Allah bless us and shower His mercy upon us.");
         setIsSubmitting(false);
     };

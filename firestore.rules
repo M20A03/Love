@@ -2,7 +2,14 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Read allowed for live public presentation, writes denied to prevent vandalism
+
+    // Allow proposal response submission
+    match /responses/{responseId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+    // Default read allowed for celebration assets, writes locked
     match /{document=**} {
       allow read: if true;
       allow write: if false;
